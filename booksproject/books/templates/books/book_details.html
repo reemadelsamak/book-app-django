@@ -1,0 +1,27 @@
+{% extends 'books/base.html' %} 
+{% block title%}"{{book.title}}" Details{%endblock %}
+
+
+{% block content %}
+<div class="col-md-6 mx-auto my-5">
+  <div class="card">
+    <h4 class="card-header">Book: {{book.title}}</h4>
+    <div class="card-body d-flex justify-content-between">
+      <div className="d-flex flex-column">
+        <p><b>description:</b> {{book.publish_date}}</p>
+        <p><b>Added to Site at:</b> {{book.created_at|date:"d-M-Y, H:m"}}</p>
+        {% comment %} <p>
+          <b>Author: </b
+          ><a href="author/{{book.author.id}}"> {{book.author.name}} </a>
+        </p> {% endcomment %}
+        <p>
+          <b>Author: </b
+          ><a href="{%url 'get_author' book.author.id%}"> {{book.author.name}} </a>
+        </p>
+        <p><b>Price:</b> {{book.price}}</p>
+      </div>
+      <img style="width: 50%" src="{{book.poster.url}}" />
+    </div>
+  </div>
+</div>
+{% endblock %}

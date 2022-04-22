@@ -1,0 +1,36 @@
+{% extends 'books/base.html' %} 
+{% block title %}Home Page{%endblock %} 
+
+{% block content %}
+<div class="col-md-6 mx-auto my-5">
+  <div class="card">
+    <h5 class="card-header">All Books:</h5>
+    <div class="card-body">
+      <ul class="list-group">
+        {%for book in books%}
+        <li class="d-flex justify-content-between">
+          <a href="books/{{book.ISBN}}">- {{ book.title }}</a>
+          <div class="">
+            <a class="text-warning" href="books/update/{{book.ISBN}}"
+              ><i class="fa-solid fa-pen-to-square"></i
+            ></a>
+            <a class="text-danger" href="books/delete/{{book.ISBN}}"
+              ><i class="fa-solid fa-trash-can"></i
+            ></a>
+          </div>
+        </li>
+        {%empty%}
+        <h1>No Books Found</h1>
+        {%endfor%}
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <a
+    class="btn btn-success text-center mx-auto w-25"
+    href="books/create"
+    ><i class="fa-solid fa-plus"></i> Add New Book</a
+  >
+</div>
+{% endblock %}
